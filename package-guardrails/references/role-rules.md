@@ -21,7 +21,7 @@
 ## Boundary Escalation
 
 - Stop before editing any path outside `owner_package`.
-- Stop before editing any path outside `packages/*`.
+- Stop before editing a second package or workspace directory.
 - Stop before changing shared tooling, repo metadata, or another package's issue files unless the user explicitly approves the change.
 
 ## Refusal Rules

@@ -1,6 +1,6 @@
 ---
 name: package-guardrails
-description: Enforce package-scoped development guardrails, documentation reading gates, and issue handoff workflows for the Portfolio Lab monorepo. Use when Codex is asked to implement, review, fix bugs, add features, create cross-package requests, or resolve handoff issues inside packages/* and must stay within a single owner package.
+description: Enforce package-scoped development guardrails, documentation reading gates, and issue handoff workflows for package-based repositories. Use when Codex is asked to implement, review, fix bugs, add features, create cross-package requests, or resolve handoff issues while staying within a single owner package or workspace package.
 ---
 
 # Package Guardrails
@@ -20,8 +20,8 @@ Read the correct documentation before coding.
 Protect write boundaries.
 
 - Edit only files inside `owner_package` by default.
-- Treat every other `packages/*` directory as read-only.
-- Treat every path outside `packages/*` as read-only unless the user explicitly approves the change.
+- Treat every other package or workspace directory as read-only.
+- Treat every path outside `owner_package` as read-only unless the user explicitly approves the change.
 - Stop and ask before changing a second package, root config, app code, or shared tooling.
 
 Follow the issue handoff workflow when another package blocks progress.

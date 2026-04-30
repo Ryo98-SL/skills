@@ -5,24 +5,26 @@
 Pending issues:
 
 ```text
-packages/<target>/issues/<sender>/{bugs|features}/<priority>-<timestamp>.md
+<target_package>/issues/<sender>/{bugs|features}/<priority>-<timestamp>.md
 ```
 
 Resolved issues:
 
 ```text
-packages/<target>/issues-resolved/<sender>/{bugs|features}/<priority>-<timestamp>.md
-packages/<target>/issues-resolved/<sender>/{bugs|features}/<priority>-<timestamp>.log.md
-packages/<target>/issues-resolved/<sender>/{bugs|features}/<priority>-<timestamp>.reason.md
+<target_package>/issues-resolved/<sender>/{bugs|features}/<priority>-<timestamp>.md
+<target_package>/issues-resolved/<sender>/{bugs|features}/<priority>-<timestamp>.log.md
+<target_package>/issues-resolved/<sender>/{bugs|features}/<priority>-<timestamp>.reason.md
 ```
 
 Sender-side tracking:
 
 ```text
-packages/<sender>/sent-issues/<target>/{bugs|features}/<priority>-<timestamp>.sent.md
-packages/<sender>/sent-issues/<target>/{bugs|features}/<priority>-<timestamp>.resolved.sent.md
-packages/<sender>/sent-issues/<target>/{bugs|features}/<priority>-<timestamp>.r<n>.md
+<sender_package>/sent-issues/<target>/{bugs|features}/<priority>-<timestamp>.sent.md
+<sender_package>/sent-issues/<target>/{bugs|features}/<priority>-<timestamp>.resolved.sent.md
+<sender_package>/sent-issues/<target>/{bugs|features}/<priority>-<timestamp>.r<n>.md
 ```
+
+Use the real package path for `<target_package>` and `<sender_package>`, such as `packages/shared-logger`, `libs/logger`, or `apps/web`.
 
 ## Filename Rules
 

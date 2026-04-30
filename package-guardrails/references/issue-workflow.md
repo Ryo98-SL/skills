@@ -9,13 +9,13 @@
 ## 2. Send A Cross-Package Issue
 
 - Read the target package `README.md`.
-- Create the target issue file in `packages/<target>/issues/<sender>/<kind>/`.
-- Create the matching sender-side `.sent.md` file in `packages/<sender>/sent-issues/<target>/<kind>/`.
+- Create the target issue file in `<target_package>/issues/<sender>/<kind>/`.
+- Create the matching sender-side `.sent.md` file in `<sender_package>/sent-issues/<target>/<kind>/`.
 - Run:
 
 ```bash
-node scripts/issue-guard/validate-issue.mjs --target packages/<target> --sender packages/<sender> --kind <bugs|features> --file packages/<target>/issues/<sender>/<kind>/<priority>-<timestamp>.md
-node scripts/issue-guard/validate-reopen.mjs --sender packages/<sender> --target packages/<target> --file packages/<sender>/sent-issues/<target>/<kind>/<priority>-<timestamp>.sent.md
+node scripts/issue-guard/validate-issue.mjs --target <target_package> --sender <sender_package> --kind <bugs|features> --file <target_package>/issues/<sender>/<kind>/<priority>-<timestamp>.md
+node scripts/issue-guard/validate-reopen.mjs --sender <sender_package> --target <target_package> --file <sender_package>/sent-issues/<target>/<kind>/<priority>-<timestamp>.sent.md
 ```
 
 ## 3. Resolve Or Refuse An Issue
@@ -27,8 +27,8 @@ node scripts/issue-guard/validate-reopen.mjs --sender packages/<sender> --target
 - Run:
 
 ```bash
-node scripts/issue-guard/validate-resolution.mjs --target packages/<target> --file packages/<target>/issues-resolved/<sender>/<kind>/<priority>-<timestamp>.md
-node scripts/issue-guard/validate-resolution.mjs --target packages/<target> --file packages/<target>/issues-resolved/<sender>/<kind>/<priority>-<timestamp>.md --rejected
+node scripts/issue-guard/validate-resolution.mjs --target <target_package> --file <target_package>/issues-resolved/<sender>/<kind>/<priority>-<timestamp>.md
+node scripts/issue-guard/validate-resolution.mjs --target <target_package> --file <target_package>/issues-resolved/<sender>/<kind>/<priority>-<timestamp>.md --rejected
 ```
 
 Use the `--rejected` form only when the owner agent refused the issue.
@@ -48,7 +48,7 @@ Use the `--rejected` form only when the owner agent refused the issue.
 - Run:
 
 ```bash
-node scripts/issue-guard/validate-reopen.mjs --sender packages/<sender> --target packages/<target> --file packages/<sender>/sent-issues/<target>/<kind>/<priority>-<timestamp>.r1.md --verification failed
+node scripts/issue-guard/validate-reopen.mjs --sender <sender_package> --target <target_package> --file <sender_package>/sent-issues/<target>/<kind>/<priority>-<timestamp>.r1.md --verification failed
 ```
 
 Pass `--verification failed` only after actually rerunning the `.sent.md` validation steps and confirming that the result still fails.

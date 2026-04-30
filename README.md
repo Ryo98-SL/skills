@@ -1,16 +1,60 @@
-
 # Ryo98's Skills
 
-## There are several skills that help me to control AI's quality of generated code:
+Personal Codex skills for keeping AI coding agents focused, bounded, and easier to coordinate in larger repositories.
 
-- ### package-guardrails
-The purpose of this skill is to reduce the number of input tokens. 
-Excessive context can lead to context anxiety and agents forgetting earlier information from the context[(context rot)](https://www.trychroma.com/research/context-rot). 
-By focusing an agent on a single package and using it as a boundary, it prevents agents responsible for other packages from accidentally entering packages outside their management (restricting read/write access to packages not owned by them). 
-This barrier also allows agents to collaborate without overwriting other agents' code, as they only modify their own packages.
-If they want a dependent package to provide a feature or fix a bug, they will initiate an issue with the dependent module. 
-When the agent responsible for the dependent package starts, it will first check its own issue and determine whether to resolve it.
-If not, it will consult with a human and provide a reason.
-Furthermore, this skill mandates that agents write two markup files for the package: README.md and README.deep.md. 
-These files describe the current state of the package and help the agent in the next new dialog window obtain information, allowing it to better understand and modify the code. 
-For details, please refer to the corresponding README.md file for the skill.
+[简体中文](README.zh-CN.md)
+
+## Available Skills
+
+### package-guardrails
+
+`package-guardrails` enforces package-scoped development rules for package-based repositories and monorepos.
+
+Its main goals are to:
+
+- reduce unnecessary context by requiring an explicit `owner_package` before work begins;
+- keep each agent inside a single writable package boundary;
+- require the right package documentation before coding;
+- prevent agents from accidentally modifying packages they do not own;
+- use issue handoffs when one package needs another package to add a feature or fix a bug;
+- preserve package-level knowledge through `README.md` and `README.deep.md`.
+
+The skill is especially useful when multiple agents are working in parallel. Each agent owns one package, treats other packages as read-only, and creates structured issues instead of directly changing code outside its boundary.
+
+For the full workflow, see [`package-guardrails/SKILL.md`](package-guardrails/SKILL.md).
+
+## Repository Layout
+
+```text
+.
+├── README.md
+├── README.zh-CN.md
+└── package-guardrails/
+    ├── SKILL.md
+    └── references/
+        ├── issue-workflow.md
+        ├── path-conventions.md
+        └── role-rules.md
+```
+
+## Installation
+
+This repository follows the open agent skills ecosystem supported by Vercel Labs' `skills` CLI.
+
+```bash
+npx skills add ./package-guardrails -a codex
+```
+
+Install it globally for Codex if you want the skill available across projects:
+
+```bash
+npx skills add ./package-guardrails -a codex -g
+```
+
+After publishing this repository, it can also be installed from GitHub:
+
+```bash
+npx skills add https://github.com/<owner>/<repo>/tree/main/package-guardrails -a codex
+```
+
+After installation, Codex can use `package-guardrails` when a task involves implementation, review, bug fixes, feature work, or cross-package handoffs inside a package-based repository.

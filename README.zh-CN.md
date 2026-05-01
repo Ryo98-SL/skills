@@ -42,19 +42,7 @@
 本仓库遵循 Vercel Labs `skills` CLI 所支持的 open agent skills ecosystem。
 
 ```bash
-npx skills add ./package-guardrails -a codex
-```
-
-如果希望在所有项目里都能使用这个 skill，可以全局安装到 Codex：
-
-```bash
-npx skills add ./package-guardrails -a codex -g
-```
-
-仓库发布后，也可以直接从 GitHub 安装：
-
-```bash
-npx skills add https://github.com/<owner>/<repo>/tree/main/package-guardrails -a codex
+npx skills add https://github.com/Ryo98-SL/skills/tree/main/package-guardrails -a codex
 ```
 
 安装后，当任务涉及 package-based repository 内的实现、评审、修 bug、加功能或跨 package issue 交接时，Codex 就可以使用 `package-guardrails`。

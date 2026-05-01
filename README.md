@@ -42,19 +42,7 @@ For the full workflow, see [`package-guardrails/SKILL.md`](package-guardrails/SK
 This repository follows the open agent skills ecosystem supported by Vercel Labs' `skills` CLI.
 
 ```bash
-npx skills add ./package-guardrails -a codex
-```
-
-Install it globally for Codex if you want the skill available across projects:
-
-```bash
-npx skills add ./package-guardrails -a codex -g
-```
-
-After publishing this repository, it can also be installed from GitHub:
-
-```bash
-npx skills add https://github.com/<owner>/<repo>/tree/main/package-guardrails -a codex
+npx skills add https://github.com/Ryo98-SL/skills/tree/main/package-guardrails -a codex
 ```
 
 After installation, Codex can use `package-guardrails` when a task involves implementation, review, bug fixes, feature work, or cross-package handoffs inside a package-based repository.

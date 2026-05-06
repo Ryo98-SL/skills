@@ -23,12 +23,33 @@
 
 完整规则请查看 [`package-guardrails/SKILL.md`](package-guardrails/SKILL.md)。
 
+### code-style-guardrails
+
+`code-style-guardrails` 用来为实现和重构工作约束仓库本地的代码结构、前端样式约定和文档同步规则。
+
+它主要解决这些问题：
+
+- 在编辑前要求 agent 先识别目标 package、app、module、feature folder 或 component folder；
+- 编码前要求读取附近的仓库文档和既有约定；
+- 让 TypeScript 和 TSX 改动按职责拆分，避免单文件持续膨胀成混杂多种关注点的大文件；
+- 让前端样式跟随目标项目已有体系，无论项目使用 Tailwind、CSS modules、CSS-in-JS、design-system props 还是普通 CSS；
+- 当行为、安装方式、命令或结构变化时，同步更新面向用户和面向实现的文档；
+- 鼓励使用仓库自身的 lint、typecheck、test 或 style guard 命令做聚焦验证。
+
+这个 skill 适用于通用 TypeScript 和 React 项目，包括 monorepo、app 目录、package 目录以及按 feature 组织的代码库。它不绑定具体产品、框架或样式栈；本地约定优先。
+
+完整规则请查看 [`code-style-guardrails/SKILL.md`](code-style-guardrails/SKILL.md)。
+
 ## 仓库结构
 
 ```text
 .
 ├── README.md
 ├── README.zh-CN.md
+├── code-style-guardrails/
+│   ├── SKILL.md
+│   └── references/
+│       └── index-md-template.md
 └── package-guardrails/
     ├── SKILL.md
     └── references/
@@ -45,4 +66,8 @@
 npx skills add https://github.com/Ryo98-SL/skills/tree/main/package-guardrails -a codex
 ```
 
-安装后，当任务涉及 package-based repository 内的实现、评审、修 bug、加功能或跨 package issue 交接时，Codex 就可以使用 `package-guardrails`。
+```bash
+npx skills add https://github.com/Ryo98-SL/skills/tree/main/code-style-guardrails -a codex
+```
+
+安装后，当任务涉及 package-based repository 内的实现、评审、修 bug、加功能或跨 package issue 交接时，Codex 就可以使用 `package-guardrails`。当任务涉及 TypeScript、TSX、React、模块结构、样式一致性或文档同步时，Codex 就可以使用 `code-style-guardrails`。

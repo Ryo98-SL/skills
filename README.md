@@ -40,6 +40,22 @@ The skill is useful for general TypeScript and React projects, including monorep
 
 For the full workflow, see [`code-style-guardrails/SKILL.md`](code-style-guardrails/SKILL.md).
 
+### task-chain-planner
+
+`task-chain-planner` turns a feature design, refactor, research effort, or project into an ordered chain of independently executable tasks.
+
+Its main goals are to:
+
+- decompose high-level work by dependency boundaries rather than file lists;
+- create task chains that can be resumed by another engineer or agent without chat history;
+- require each task to have a clear brief, handoff document, and acceptance document;
+- make downstream tasks depend on durable handoff documents instead of implicit context;
+- keep completion gates explicit through validation commands and human review points.
+
+The skill is useful when a project is too large or risky to implement as one continuous task. It creates durable planning documentation and stops before implementation unless explicitly asked to continue.
+
+For the full workflow, see [`task-chain-planner/SKILL.md`](task-chain-planner/SKILL.md).
+
 ## Repository Layout
 
 ```text
@@ -50,12 +66,16 @@ For the full workflow, see [`code-style-guardrails/SKILL.md`](code-style-guardra
 │   ├── SKILL.md
 │   └── references/
 │       └── index-md-template.md
-└── package-guardrails/
+├── package-guardrails/
+│   ├── SKILL.md
+│   └── references/
+│       ├── issue-workflow.md
+│       ├── path-conventions.md
+│       └── role-rules.md
+└── task-chain-planner/
     ├── SKILL.md
     └── references/
-        ├── issue-workflow.md
-        ├── path-conventions.md
-        └── role-rules.md
+        └── templates.md
 ```
 
 ## Installation
@@ -70,4 +90,8 @@ npx skills add https://github.com/Ryo98-SL/skills/tree/main/package-guardrails -
 npx skills add https://github.com/Ryo98-SL/skills/tree/main/code-style-guardrails -a codex
 ```
 
-After installation, Codex can use `package-guardrails` when a task involves implementation, review, bug fixes, feature work, or cross-package handoffs inside a package-based repository. Codex can use `code-style-guardrails` when a task involves TypeScript, TSX, React, module structure, styling consistency, or documentation synchronization in a codebase.
+```bash
+npx skills add https://github.com/Ryo98-SL/skills/tree/main/task-chain-planner -a codex
+```
+
+After installation, Codex can use `package-guardrails` when a task involves implementation, review, bug fixes, feature work, or cross-package handoffs inside a package-based repository. Codex can use `code-style-guardrails` when a task involves TypeScript, TSX, React, module structure, styling consistency, or documentation synchronization in a codebase. Codex can use `task-chain-planner` when a high-level design or project needs to become a resumable sequence of task briefs, handoff documents, and acceptance checks.

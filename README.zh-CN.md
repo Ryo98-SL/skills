@@ -40,6 +40,22 @@
 
 完整规则请查看 [`code-style-guardrails/SKILL.md`](code-style-guardrails/SKILL.md)。
 
+### task-chain-planner
+
+`task-chain-planner` 用来把 feature design、重构、研究任务或项目拆成有明确依赖顺序、可以独立执行和验收的任务链。
+
+它主要解决这些问题：
+
+- 按依赖边界拆分高层工作，而不是按文件列表机械拆分；
+- 让另一个 engineer 或 agent 不依赖聊天历史也能接续执行；
+- 要求每个任务都有清晰的 brief、handoff document 和 acceptance document；
+- 让下游任务依赖持久化 handoff 文档，而不是隐含上下文；
+- 通过验证命令和人工检查点明确每个任务的完成门槛。
+
+这个 skill 适合处理无法安全地一次性实现的大型功能、重构或项目。它负责生成持久化规划文档，并在用户没有明确要求继续实现时停在规划阶段。
+
+完整规则请查看 [`task-chain-planner/SKILL.md`](task-chain-planner/SKILL.md)。
+
 ## 仓库结构
 
 ```text
@@ -50,12 +66,16 @@
 │   ├── SKILL.md
 │   └── references/
 │       └── index-md-template.md
-└── package-guardrails/
+├── package-guardrails/
+│   ├── SKILL.md
+│   └── references/
+│       ├── issue-workflow.md
+│       ├── path-conventions.md
+│       └── role-rules.md
+└── task-chain-planner/
     ├── SKILL.md
     └── references/
-        ├── issue-workflow.md
-        ├── path-conventions.md
-        └── role-rules.md
+        └── templates.md
 ```
 
 ## 安装方式
@@ -70,4 +90,8 @@ npx skills add https://github.com/Ryo98-SL/skills/tree/main/package-guardrails -
 npx skills add https://github.com/Ryo98-SL/skills/tree/main/code-style-guardrails -a codex
 ```
 
-安装后，当任务涉及 package-based repository 内的实现、评审、修 bug、加功能或跨 package issue 交接时，Codex 就可以使用 `package-guardrails`。当任务涉及 TypeScript、TSX、React、模块结构、样式一致性或文档同步时，Codex 就可以使用 `code-style-guardrails`。
+```bash
+npx skills add https://github.com/Ryo98-SL/skills/tree/main/task-chain-planner -a codex
+```
+
+安装后，当任务涉及 package-based repository 内的实现、评审、修 bug、加功能或跨 package issue 交接时，Codex 就可以使用 `package-guardrails`。当任务涉及 TypeScript、TSX、React、模块结构、样式一致性或文档同步时，Codex 就可以使用 `code-style-guardrails`。当一个高层设计或项目需要拆成可恢复、可交接、可验收的任务链时，Codex 就可以使用 `task-chain-planner`。

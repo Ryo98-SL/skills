@@ -56,6 +56,23 @@ The skill is useful when a project is too large or risky to implement as one con
 
 For the full workflow, see [`task-chain-planner/SKILL.md`](task-chain-planner/SKILL.md).
 
+### mainline-grill-me
+
+`mainline-grill-me` interviews the user about a plan or design by resolving the main decision branches first and supplying best-practice defaults for smaller details.
+
+Its main goals are to:
+
+- reach shared understanding before implementation or detailed planning begins;
+- focus each question on one major design branch at a time;
+- provide a recommended answer for each major question so the user can accept, refine, or challenge it;
+- inspect the codebase directly when a question can be answered from local context;
+- treat trivial implementation details as accepted defaults unless the user objects;
+- keep accepted decisions visible and use them to constrain later questions.
+
+The skill is useful when a plan needs focused pressure-testing without spending time on every minor option. It keeps the conversation on the main line of the design, while still capturing enough decisions for another engineer or agent to act on.
+
+For the full workflow, see [`mainline-grill-me/SKILL.md`](mainline-grill-me/SKILL.md).
+
 ## Repository Layout
 
 ```text
@@ -66,6 +83,8 @@ For the full workflow, see [`task-chain-planner/SKILL.md`](task-chain-planner/SK
 │   ├── SKILL.md
 │   └── references/
 │       └── index-md-template.md
+├── mainline-grill-me/
+│   └── SKILL.md
 ├── package-guardrails/
 │   ├── SKILL.md
 │   └── references/
@@ -94,4 +113,8 @@ npx skills add https://github.com/Ryo98-SL/skills/tree/main/code-style-guardrail
 npx skills add https://github.com/Ryo98-SL/skills/tree/main/task-chain-planner -a codex
 ```
 
-After installation, Codex can use `package-guardrails` when a task involves implementation, review, bug fixes, feature work, or cross-package handoffs inside a package-based repository. Codex can use `code-style-guardrails` when a task involves TypeScript, TSX, React, module structure, styling consistency, or documentation synchronization in a codebase. Codex can use `task-chain-planner` when a high-level design or project needs to become a resumable sequence of task briefs, handoff documents, and acceptance checks.
+```bash
+npx skills add https://github.com/Ryo98-SL/skills/tree/main/mainline-grill-me -a codex
+```
+
+After installation, Codex can use `package-guardrails` when a task involves implementation, review, bug fixes, feature work, or cross-package handoffs inside a package-based repository. Codex can use `code-style-guardrails` when a task involves TypeScript, TSX, React, module structure, styling consistency, or documentation synchronization in a codebase. Codex can use `task-chain-planner` when a high-level design or project needs to become a resumable sequence of task briefs, handoff documents, and acceptance checks. Codex can use `mainline-grill-me` when a plan or design needs focused questioning around the most important decisions before moving into detailed work.

@@ -56,6 +56,23 @@
 
 完整规则请查看 [`task-chain-planner/SKILL.md`](task-chain-planner/SKILL.md)。
 
+### mainline-grill-me
+
+`mainline-grill-me` 用来围绕一个计划或设计进行主线式追问：先解决主要设计分支，对次要实现细节给出最佳实践默认值。
+
+它主要解决这些问题：
+
+- 在开始实现或细化规划前，让用户和 agent 先达成共同理解；
+- 每次只追问一个主要设计分支；
+- 对每个主要问题给出推荐答案，方便用户直接接受、修正或反驳；
+- 如果问题能通过阅读代码库回答，就让 agent 先探索代码库；
+- 对琐碎实现细节不逐项追问，而是列出默认做法和简短理由；
+- 持续记录已接受的决策，并用这些决策约束后续问题。
+
+这个 skill 适合在计划还需要被压实、但又不想陷入所有小选项时使用。它会把讨论保持在设计主线上，同时留下足够明确的决策，方便 engineer 或 agent 后续执行。
+
+完整规则请查看 [`mainline-grill-me/SKILL.md`](mainline-grill-me/SKILL.md)。
+
 ## 仓库结构
 
 ```text
@@ -66,6 +83,8 @@
 │   ├── SKILL.md
 │   └── references/
 │       └── index-md-template.md
+├── mainline-grill-me/
+│   └── SKILL.md
 ├── package-guardrails/
 │   ├── SKILL.md
 │   └── references/
@@ -94,4 +113,8 @@ npx skills add https://github.com/Ryo98-SL/skills/tree/main/code-style-guardrail
 npx skills add https://github.com/Ryo98-SL/skills/tree/main/task-chain-planner -a codex
 ```
 
-安装后，当任务涉及 package-based repository 内的实现、评审、修 bug、加功能或跨 package issue 交接时，Codex 就可以使用 `package-guardrails`。当任务涉及 TypeScript、TSX、React、模块结构、样式一致性或文档同步时，Codex 就可以使用 `code-style-guardrails`。当一个高层设计或项目需要拆成可恢复、可交接、可验收的任务链时，Codex 就可以使用 `task-chain-planner`。
+```bash
+npx skills add https://github.com/Ryo98-SL/skills/tree/main/mainline-grill-me -a codex
+```
+
+安装后，当任务涉及 package-based repository 内的实现、评审、修 bug、加功能或跨 package issue 交接时，Codex 就可以使用 `package-guardrails`。当任务涉及 TypeScript、TSX、React、模块结构、样式一致性或文档同步时，Codex 就可以使用 `code-style-guardrails`。当一个高层设计或项目需要拆成可恢复、可交接、可验收的任务链时，Codex 就可以使用 `task-chain-planner`。当一个计划或设计需要围绕关键决策做主线式追问时，Codex 就可以使用 `mainline-grill-me`。

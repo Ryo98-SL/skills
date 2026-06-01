@@ -73,12 +73,32 @@ The skill is useful when a plan needs focused pressure-testing without spending 
 
 For the full workflow, see [`mainline-grill-me/SKILL.md`](mainline-grill-me/SKILL.md).
 
+### agents-md-template-design
+
+`agents-md-template-design` drafts or updates `AGENTS.md` files with a compact six-section template for agent-facing repository guidance.
+
+Its main goals are to:
+
+- keep `AGENTS.md` readable by standardizing it to six top-level sections;
+- make `Project Overview` short and factual, covering purpose, stack, and deployment environment;
+- capture only the most-used runnable commands for day-to-day agent work;
+- point `Architecture` at real paths instead of restating repository structure in prose;
+- record only current, self-checkable conventions instead of aspirational rules;
+- preserve hard constraints and hidden gotchas in a form agents can act on reliably;
+- split oversized sections into focused files under `docs/` when the main guide would get too long.
+
+The skill is useful when a repository needs a clean `AGENTS.md`, when an existing guide needs to be normalized into a consistent structure, or when project context should be turned into durable instructions another agent can follow without chat history.
+
+For the full workflow, see [`agents-md-template-design/SKILL.md`](agents-md-template-design/SKILL.md).
+
 ## Repository Layout
 
 ```text
 .
 ├── README.md
 ├── README.zh-CN.md
+├── agents-md-template-design/
+│   └── SKILL.md
 ├── code-style-guardrails/
 │   ├── SKILL.md
 │   └── references/
@@ -117,4 +137,8 @@ npx skills add https://github.com/Ryo98-SL/skills/tree/main/task-chain-planner -
 npx skills add https://github.com/Ryo98-SL/skills/tree/main/mainline-grill-me -a codex
 ```
 
-After installation, Codex can use `package-guardrails` when a task involves implementation, review, bug fixes, feature work, or cross-package handoffs inside a package-based repository. Codex can use `code-style-guardrails` when a task involves TypeScript, TSX, React, module structure, styling consistency, or documentation synchronization in a codebase. Codex can use `task-chain-planner` when a high-level design or project needs to become a resumable sequence of task briefs, handoff documents, and acceptance checks. Codex can use `mainline-grill-me` when a plan or design needs focused questioning around the most important decisions before moving into detailed work.
+```bash
+npx skills add https://github.com/Ryo98-SL/skills/tree/main/agents-md-template-design -a codex
+```
+
+After installation, Codex can use `package-guardrails` when a task involves implementation, review, bug fixes, feature work, or cross-package handoffs inside a package-based repository. Codex can use `code-style-guardrails` when a task involves TypeScript, TSX, React, module structure, styling consistency, or documentation synchronization in a codebase. Codex can use `task-chain-planner` when a high-level design or project needs to become a resumable sequence of task briefs, handoff documents, and acceptance checks. Codex can use `mainline-grill-me` when a plan or design needs focused questioning around the most important decisions before moving into detailed work. Codex can use `agents-md-template-design` when a repository needs a structured `AGENTS.md` drafted, revised, or normalized into a compact six-section guide for future agents.

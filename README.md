@@ -73,6 +73,22 @@ The skill is useful when a plan needs focused pressure-testing without spending 
 
 For the full workflow, see [`mainline-grill-me/SKILL.md`](mainline-grill-me/SKILL.md).
 
+### mainline-grill-with-docs
+
+`mainline-grill-with-docs` extends `mainline-grill-me` with domain-model and documentation awareness, stress-testing a plan against the project's existing language and recorded decisions.
+
+Its main goals are to:
+
+- resolve the main decision branches first and supply best-practice defaults for smaller details, exactly like `mainline-grill-me`;
+- challenge new terms against the existing glossary in `CONTEXT.md` and sharpen vague or overloaded language into precise canonical terms;
+- cross-reference stated behavior against the code and surface contradictions;
+- update `CONTEXT.md` inline as terms are resolved, keeping it a glossary free of implementation detail;
+- offer an ADR only when a decision is hard to reverse, surprising without context, and the result of a real trade-off.
+
+The skill is useful when a plan should be pressure-tested not just for its logic but for how it fits the project's documented domain language and architectural decisions, capturing the durable outcomes in `CONTEXT.md` and `docs/adr/` as they crystallise.
+
+For the full workflow, see [`mainline-grill-with-docs/SKILL.md`](mainline-grill-with-docs/SKILL.md).
+
 ### agents-md-template-design
 
 `agents-md-template-design` drafts or updates `AGENTS.md` files with a compact six-section template for agent-facing repository guidance.
@@ -105,6 +121,10 @@ For the full workflow, see [`agents-md-template-design/SKILL.md`](agents-md-temp
 │       └── index-md-template.md
 ├── mainline-grill-me/
 │   └── SKILL.md
+├── mainline-grill-with-docs/
+│   ├── SKILL.md
+│   ├── CONTEXT-FORMAT.md
+│   └── ADR-FORMAT.md
 ├── package-guardrails/
 │   ├── SKILL.md
 │   └── references/
@@ -138,7 +158,11 @@ npx skills add https://github.com/Ryo98-SL/skills/tree/main/mainline-grill-me -a
 ```
 
 ```bash
+npx skills add https://github.com/Ryo98-SL/skills/tree/main/mainline-grill-with-docs -a codex
+```
+
+```bash
 npx skills add https://github.com/Ryo98-SL/skills/tree/main/agents-md-template-design -a codex
 ```
 
-After installation, Codex can use `package-guardrails` when a task involves implementation, review, bug fixes, feature work, or cross-package handoffs inside a package-based repository. Codex can use `code-style-guardrails` when a task involves TypeScript, TSX, React, module structure, styling consistency, or documentation synchronization in a codebase. Codex can use `task-chain-planner` when a high-level design or project needs to become a resumable sequence of task briefs, handoff documents, and acceptance checks. Codex can use `mainline-grill-me` when a plan or design needs focused questioning around the most important decisions before moving into detailed work. Codex can use `agents-md-template-design` when a repository needs a structured `AGENTS.md` drafted, revised, or normalized into a compact six-section guide for future agents.
+After installation, Codex can use `package-guardrails` when a task involves implementation, review, bug fixes, feature work, or cross-package handoffs inside a package-based repository. Codex can use `code-style-guardrails` when a task involves TypeScript, TSX, React, module structure, styling consistency, or documentation synchronization in a codebase. Codex can use `task-chain-planner` when a high-level design or project needs to become a resumable sequence of task briefs, handoff documents, and acceptance checks. Codex can use `mainline-grill-me` when a plan or design needs focused questioning around the most important decisions before moving into detailed work. Codex can use `mainline-grill-with-docs` when that same focused questioning should also be checked against the project's documented domain language and decisions, updating `CONTEXT.md` and ADRs inline. Codex can use `agents-md-template-design` when a repository needs a structured `AGENTS.md` drafted, revised, or normalized into a compact six-section guide for future agents.

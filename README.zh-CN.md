@@ -73,6 +73,22 @@
 
 完整规则请查看 [`mainline-grill-me/SKILL.md`](mainline-grill-me/SKILL.md)。
 
+### mainline-grill-with-docs
+
+`mainline-grill-with-docs` 在 `mainline-grill-me` 的基础上增加了领域模型与文档意识，让追问同时对照项目已有的术语和已记录的决策来压实计划。
+
+它主要解决这些问题：
+
+- 与 `mainline-grill-me` 一样，先解决主要设计分支，对次要细节给出最佳实践默认值；
+- 把新出现的术语对照 `CONTEXT.md` 里的术语表，及时指出冲突，并把含糊或多义的说法收敛成精确的规范术语；
+- 把陈述的行为与代码交叉验证，发现矛盾就当场指出；
+- 在术语确定的当下就更新 `CONTEXT.md`，让它保持为一份不含实现细节的术语表；
+- 仅当一个决策难以回退、缺少背景会让人费解、且确实是权衡取舍的结果时，才建议写 ADR。
+
+这个 skill 适合在不仅要检验计划本身的逻辑、还要检验它是否契合项目已记录的领域语言与架构决策时使用，并在 `CONTEXT.md` 和 `docs/adr/` 中沉淀下这些成果。
+
+完整规则请查看 [`mainline-grill-with-docs/SKILL.md`](mainline-grill-with-docs/SKILL.md)。
+
 ## 仓库结构
 
 ```text
@@ -85,6 +101,10 @@
 │       └── index-md-template.md
 ├── mainline-grill-me/
 │   └── SKILL.md
+├── mainline-grill-with-docs/
+│   ├── SKILL.md
+│   ├── CONTEXT-FORMAT.md
+│   └── ADR-FORMAT.md
 ├── package-guardrails/
 │   ├── SKILL.md
 │   └── references/
@@ -117,4 +137,8 @@ npx skills add https://github.com/Ryo98-SL/skills/tree/main/task-chain-planner -
 npx skills add https://github.com/Ryo98-SL/skills/tree/main/mainline-grill-me -a codex
 ```
 
-安装后，当任务涉及 package-based repository 内的实现、评审、修 bug、加功能或跨 package issue 交接时，Codex 就可以使用 `package-guardrails`。当任务涉及 TypeScript、TSX、React、模块结构、样式一致性或文档同步时，Codex 就可以使用 `code-style-guardrails`。当一个高层设计或项目需要拆成可恢复、可交接、可验收的任务链时，Codex 就可以使用 `task-chain-planner`。当一个计划或设计需要围绕关键决策做主线式追问时，Codex 就可以使用 `mainline-grill-me`。
+```bash
+npx skills add https://github.com/Ryo98-SL/skills/tree/main/mainline-grill-with-docs -a codex
+```
+
+安装后，当任务涉及 package-based repository 内的实现、评审、修 bug、加功能或跨 package issue 交接时，Codex 就可以使用 `package-guardrails`。当任务涉及 TypeScript、TSX、React、模块结构、样式一致性或文档同步时，Codex 就可以使用 `code-style-guardrails`。当一个高层设计或项目需要拆成可恢复、可交接、可验收的任务链时，Codex 就可以使用 `task-chain-planner`。当一个计划或设计需要围绕关键决策做主线式追问时，Codex 就可以使用 `mainline-grill-me`。当这种主线式追问还需要对照项目已记录的领域语言与决策、并在 `CONTEXT.md` 和 ADR 中即时更新时，Codex 就可以使用 `mainline-grill-with-docs`。
